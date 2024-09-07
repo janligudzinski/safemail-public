@@ -40,6 +40,8 @@ async fn main() {
             post(routes::message::send_periodic),
         )
         .route("/message/send_onetime", post(routes::message::send_onetime))
+        .route("/message/get_all", get(routes::message::get_all_messages))
+        .route("/message/:id", get(routes::message::get_message_by_id))
         .layer(Extension(AppState::new().await))
         .layer(
             CorsLayer::new()
